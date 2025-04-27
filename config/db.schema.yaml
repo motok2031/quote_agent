@@ -1,0 +1,139 @@
+# 数据库配置
+dbDir: "data"
+dbName: "twitter.db"
+
+# 表结构定义
+tables:
+  # Twitter Cookies表，存储所有角色的Twitter Cookies
+  cookies:
+    schema:
+      # 角色唯一标识
+      username: "TEXT PRIMARY KEY"
+      # cookies_string
+      cookies: "TEXT"
+      # 更新时间
+      updated_at: "DATETIME DEFAULT CURRENT_TIMESTAMP"
+
+  tweet:
+    schema:
+      id: "TEXT PRIMARY KEY"
+      text: "TEXT"
+      userId: "TEXT"
+      
+      bookmark_count: "INTEGER"
+      retweet_count: "INTEGER"
+      reply_count: "INTEGER"
+      quote_count: "INTEGER"
+      view_count: "INTEGER"
+      like_count: "INTEGER"
+
+      hashtags: "TEXT_ARRAY"
+      user_mentions: "TEXT_ARRAY"
+      media: "TEXT_ARRAY"
+      media_description: "TEXT"
+      retweet_id: "TEXT"
+      quted_tweet_id: "TEXT"
+      lang: "TEXT"
+      created_at: "DATETIME DEFAULT CURRENT_TIMESTAMP" # 用户创建时间
+
+  tweet_extend:
+    schema:
+      id: "TEXT PRIMARY KEY"
+      about_ai: "BOOLEAN"
+      about_crypto: "BOOLEAN"
+      about_nsfw: "BOOLEAN"
+      about_political: "BOOLEAN"
+
+  user:
+    schema:
+      id: "TEXT PRIMARY KEY"
+      username: "TEXT"
+      screenname: "TEXT"
+      profile_image_url: "TEXT"
+      description: "TEXT"
+      location: "TEXT"
+      follower_count: "INTEGER"
+      following_count: "INTEGER"
+      tweet_count: "INTEGER"
+      evm_addr: "TEXT"
+      
+      created_at: "DATETIME DEFAULT CURRENT_TIMESTAMP" # 用户创建账号时间
+      last_update: "DATETIME DEFAULT CURRENT_TIMESTAMP" # 信息更新时间
+
+  user_extend:
+    schema:
+      id: "TEXT PRIMARY KEY"
+      user_type: "TEXT" # 用户类型, 人物, 项目, 其它, ''
+      ai_percent: "INTEGER" # AI占比
+      crypto_percent: "INTEGER" # 区块链占比
+      nsfw_percent: "INTEGER" # NSFW占比
+      political_percent: "INTEGER" # 政治占比
+      frequency: "INTEGER" # 平均多少秒发一篇
+      language: "TEXT_ARRAY" # 语言
+      last_seek: "INTEGER DEFAULT 0" # 最后一次扒好友时间
+
+  ids:
+    schema:
+      id: "INTEGER PRIMARY KEY AUTOINCREMENT"
+      userId: "TEXT"
+      relateId: "TEXT"
+      type: "TEXT" # following, follower, tocheck
+
+  config:
+    schema:
+      id: "INTEGER PRIMARY KEY AUTOINCREMENT"
+      relateId: "TEXT" # 调用的自己 userId
+      key: "TEXT"
+      value: "TEXT"
+
+  event:
+    schema:
+      id: "INTEGER PRIMARY KEY AUTOINCREMENT"
+      eventId: "TEXT"
+      previous_event_id: "TEXT"
+      description: "TEXT"
+      views: "TEXT_ARRAY"
+      keywords: "TEXT_ARRAY"
+      tweets: "TEXT_ARRAY"
+      user_mentions: "TEXT_ARRAY"
+      updated_at: "DATETIME DEFAULT CURRENT_TIMESTAMP"
+
+  project:
+    schema:
+      id: "TEXT PRIMARY KEY"
+      name: "TEXT"
+      description: "TEXT"
+      twitter_username: "TEXT"
+      updated_at: "DATETIME DEFAULT CURRENT_TIMESTAMP"
+      categoryId: "TEXT"
+      search_related_count: "INTEGER"
+      report_tweetIds: "TEXT_ARRAY"
+
+  category:
+    schema:
+      id: "INTEGER PRIMARY KEY AUTOINCREMENT"
+      name: "TEXT"
+      description: "TEXT"
+      updated_at: "DATETIME DEFAULT CURRENT_TIMESTAMP"
+
+  message:
+    schema:
+      id: "TEXT PRIMARY KEY"
+      conversationId: "TEXT"
+      senderId: "TEXT"
+      recipientId: "TEXT"
+      senderScreenName: "TEXT"
+      recipientScreenName: "TEXT"
+      mediaUrls: "TEXT_ARRAY"
+      text: "TEXT"
+      timestamp: "DATETIME DEFAULT CURRENT_TIMESTAMP"
+
+  trade:
+    schema:
+      id: "INTEGER PRIMARY KEY AUTOINCREMENT"
+      userId: "TEXT"
+      activityId: "TEXT"
+      messages: "TEXT_ARRAY"
+      updated_at: "DATETIME DEFAULT CURRENT_TIMESTAMP"
+
+

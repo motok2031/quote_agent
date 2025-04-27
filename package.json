@@ -1,0 +1,42 @@
+{
+  "name": "twitter_proj",
+  "version": "1.0.0",
+  "description": "Twitter project with SQLite database",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node --require ts-node/register --loader ts-node/esm -r ts-node/register/transpile-only src/index.ts",
+    "dev": "ts-node src/index.ts",
+    "debug": "node --require ts-node/register --loader ts-node/esm -r ts-node/register/transpile-only src/index.ts",
+    "clean": "rm -rf dist/ node_modules/ .pnpm-store/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
+    "agent-twitter-client": "^0.0.18",
+    "dotenv": "^16.4.7",
+    "eventsource": "^3.0.5",
+    "headers-polyfill": "^4.0.3",
+    "js-yaml": "^4.1.0",
+    "openai": "^4.89.0",
+    "pg": "^8.14.1",
+    "set-cookie-parser": "^2.6.0",
+    "sharp": "^0.33.5",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
+    "tough-cookie": "^4.1.2",
+    "web3": "^4.16.0"
+  },
+  "devDependencies": {
+    "@types/eventsource": "^1.1.15",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.17.27",
+    "@types/pg": "^8.11.11",
+    "@types/set-cookie-parser": "^2.4.10",
+    "@types/tough-cookie": "^4.0.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
